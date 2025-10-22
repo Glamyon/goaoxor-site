@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --surface: #f7f5f2;
+  --surface-muted: #ebe6df;
+  --surface-strong: #1c1d21;
+  --accent-primary: #2c6b67;
+  --accent-secondary: #8f8c80;
+  --text-primary: #20252c;
+  --text-muted: #525862;
+  --radius-lg: 20px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --shadow-soft: 0 18px 45px rgba(29, 33, 44, 0.08);
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: var(--surface);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(33, 37, 45, 0.25);
+  border-radius: 9999px;
+}
+
+section {
+  scroll-margin-top: 96px;
+}
+
+.font-headline {
+  font-family: "Poppins", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: -0.01em;
+}

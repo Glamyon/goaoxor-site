@@ -1,0 +1,142 @@
+合同生成器模板设计（Service Matching and Supervision Agreement）
+
+1️⃣ 用户输入字段
+
+在后台表单里，用户只需填写：字段
+说明
+示例
+Client Name / 客户姓名
+项目客户名称
+John Smith
+Project Total Amount / 项目总额
+客户与项目制作方确认的金额
+$450
+Project Type / 项目类型
+视频 / 动画 / 设计等
+Video
+Start Date / 开始日期
+协议生效日期
+2025-10-30
+Payment Method / 支付方式
+Wise 或其他
+Wise
+Additional Notes / 备注
+可选
+
+2️⃣ 自动计算逻辑
+	1.	启动费固定 $30（第一档项目总额 ≤ $300 也是 $30）
+	2.	中介费按项目总额计算剩余费用：
+	•	$0–$300 → 已支付启动费 $30，协议完成
+	•	$301–$800 → 中介费 = 10% × 项目总额 – $30
+	•	$801–$2000 → 8% × 项目总额 – $30
+	•	$2001–$5000 → 6% × 项目总额 – $30
+	•	$5001+ → 5% × 项目总额 – $30
+
+生成 PDF 时自动填入“剩余中介费”。
+
+⸻
+
+3️⃣ 合同生成示例
+
+合同内容会自动填充用户输入信息和计算结果，如：
+
+Client / 客户: John Smith
+Project Type / 项目类型: Video
+Project Total Amount / 项目总额: $450
+Start-up Fee / 启动费: $30
+Remaining Intermediation Fee / 剩余中介费: $15 (10% × 450 – 30)
+Payment Method / 支付方式: Wise
+Start Date / 生效日期: 2025-10-30
+合同主体内容保持上面详细版的条款，中英文排版保持一行英文下一行中文。
+
+⸻
+
+4️⃣ PDF 输出格式
+	•	自动生成中英文对照合同
+	•	金额和日期字段动态填充
+	•	Goaoxor 固定签署方，客户签名空格保留
+	•	可以直接用电子签署工具签署
+这里是合同模版：Service Matching and Supervision Agreement
+
+服务匹配与监督协议
+
+1. Parties / 签署方
+
+Client / 客户: ________________________
+Goaoxor (Intermediation Platform / 基于 Goaoxor.com 的中介平台): Goaoxor
+
+2. Governing Law / 司法管辖
+
+This Agreement shall be governed by and construed in accordance with the laws of Hong Kong.
+本协议适用香港法律，并按其解释。
+
+3. Scope of Services / 服务范围
+
+Goaoxor shall:
+	1.	Match the Client with suitable Project Production Parties based on the Client’s project requirements.
+根据客户项目需求，将客户与合适的项目制作方进行匹配。
+	2.	Provide supervision services to ensure the agreed project milestones are communicated and tracked.
+提供监督服务，确保项目各阶段按约沟通并跟进。
+	3.	Not engage in project execution funds or manage the payment between Client and Project Production Party.
+不参与项目执行款或管理客户与项目制作方之间的支付。
+
+4. Client Obligations / 客户义务
+	•	Provide accurate project requirements, expected deliverables, and budget information.
+提供准确的项目需求、预期成果及预算信息。
+	•	Respond timely to communications from Goaoxor and Project Production Party.
+及时回复来自Goaoxor及项目制作方的沟通。
+	•	Pay the Intermediation Fee (including supervision services) according to this Agreement.
+按本协议规定支付中介服务费（含监督服务）。
+
+5. Intermediation Fee / 中介服务费（含代监督服务）
+Project Value / 项目总额
+Intermediation Fee / 中介服务费
+$0 – $300
+$30 (fixed) / 固定30美元
+$301 – $800
+10% of project total / 项目总额的10%
+$801 – $2,000
+8% of project total / 项目总额的8%
+$2,001 – $5,000
+6% of project total / 项目总额的6%
+$5,001+
+5% of project total / 项目总额的5%
+
+Payment Terms / 支付条款:
+	1.	Start-up Fee / 启动费: $30 payable upon signing this Agreement.
+首付启动费：签署协议时支付30美元。
+	2.	Remaining Intermediation Fee / 剩余中介费: After Client and Project Production Party agree on the project total, Client shall pay the remaining fee calculated according to the table above minus the $30 already paid.
+剩余中介服务费：客户与项目制作方确认项目总额后，按上表百分比计算中介费，并减去已支付的$30。
+	3.	Payment Method / 支付方式: Via Wise or other agreed international transfer.
+支付方式：通过Wise或其他双方约定的国际转账方式。
+	4.	Non-refundable / 不可退款: All paid fees are non-refundable.
+已支付费用不可退还。
+
+6. Limitation of Liability / 责任限制
+
+Goaoxor shall exercise reasonable care in providing intermediation and supervision services.
+Goaoxor 在提供匹配和监督服务时将尽合理注意义务。
+
+However, Goaoxor shall not be liable for any direct, indirect, or consequential loss, delay, or failure arising from the performance or non-performance of the Project Production Party.
+但对于项目制作方履约或未履约导致的任何直接、间接或连带损失、延误或失败，Goaoxor 不承担责任。
+
+7. Confidentiality / 保密
+
+Both parties shall maintain the confidentiality of any information obtained during the course of this Agreement.
+双方须对在协议期间获知的所有信息保密。
+
+8. Dispute Resolution / 争议解决
+	•	Parties shall first attempt to resolve disputes through friendly negotiation.
+双方应首先通过友好协商解决争议。
+	•	Failing negotiation, Hong Kong courts shall have exclusive jurisdiction.
+协商不成时，香港法院享有专属管辖权。
+
+9. Signatures / 签署
+
+Client / 客户: ________________________  Date / 日期: _______
+
+Goaoxor (Intermediation Platform / 基于 Goaoxor.com 的中介平台): Goaoxor  Date / 日期: _______
+
+
+Note: The Intermediation Fee includes supervision services. The Agreement becomes effective upon Client’s signature. Goaoxor, as the fixed signing party, does not require repeated signatures.
+注：中介服务费包含代监督服务，客户签名后协议生效，Goaoxor为固定签署方，无需重复签名。

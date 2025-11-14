@@ -9,3 +9,5 @@ Thank you for using FormSubmit! You're only one step away from making forms on h
 Use this random-like string 6b3bf25eec406819cf20aebec6f6c05f to replace your naked email address in the action attribute of your form.
 
 ACTIVATE FORM
+
+https://goaoxor.com/tools/ContractNumberGenerator.html

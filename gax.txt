@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Goaoxor -- A calmer way to work with Chinese creative teams</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-main: #f8fafc;
+      --bg-soft: #eef2ff;
+      --card: rgba(255,255,255,0.95);
+      --card-hover: rgba(255,255,255,0.98);
+      --border: rgba(0,0,0,0.08);
+      --border-light: rgba(0,0,0,0.05);
+      --text-main: #0f172a;
+      --text-secondary: #1e293b;
+      --text-muted: #64748b;
+      --accent: #4f46e5;
+      --accent-light: #6366f1;
+      --accent-soft: rgba(79,70,229,0.08);
+      --accent-gradient: linear-gradient(135deg, #4f46e5, #6366f1);
+      --radius-sm: 8px;
+      --radius: 16px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.05);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.08);
+      --shadow-xl: 0 20px 40px rgba(0,0,0,0.1);
+      --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(180deg, var(--bg-main) 0%, var(--bg-soft) 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      line-height: 1.2;
+      margin: 0;
+      font-weight: 700;
+    }
+
+    h1 { 
+      font-size: clamp(2.5rem, 5vw, 3.5rem); 
+      background: linear-gradient(135deg, #0f172a 0%, #4f46e5 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1.5rem;
+    }
+    
+    h2 { 
+      font-size: clamp(1.75rem, 4vw, 2.5rem); 
+      margin-bottom: 2rem;
+      color: var(--text-secondary);
+    }
+    
+    h3 { 
+      font-size: 1.5rem; 
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
+    }
+    
+    h4 { 
+      font-size: 1.125rem; 
+      margin-bottom: 0.5rem;
+    }
+    
+    p { 
+      color: var(--text-muted); 
+      margin: 1rem 0;
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition-fast);
+    }
+
+    a:hover {
+      color: var(--accent-light);
+    }
+
+    .container {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      width: 100%;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title p {
+      max-width: 36rem;
+      margin: 0 auto;
+      font-size: 1.125rem;
+    }
+
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--accent-gradient);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-5px);
+      background: var(--card-hover);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .grid-2 { 
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    }
+    
+    .grid-3 { 
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1.25rem;
+      padding: 1rem 2.25rem;
+      border-radius: var(--radius);
+      background: var(--accent-gradient);
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(79,70,229,0.25);
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      font-size: 1rem;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.1);
+      transform: translateX(-100%);
+      transition: var(--transition);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(79,70,229,0.3);
+    }
+
+    .btn:hover::after {
+      transform: translateX(100%);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 8rem 0 6rem;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(79,70,229,0.05) 0%, transparent 50%);
+      z-index: -1;
+    }
+
+    .hero p {
+      max-width: 45rem;
+      margin: 1.5rem auto 2.5rem;
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+      justify-content: center;
+    }
+
+    .tag {
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .tag:hover {
+      background: white;
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 2.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 1.25rem;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      border-radius: 2px;
+      background: var(--accent-gradient);
+    }
+
+    .step {
+      position: relative;
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .dot {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--accent-gradient);
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 2.5rem;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(79,70,229,0.4);
+      flex-shrink: 0;
+      z-index: 1;
+    }
+
+    .price {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0.75rem 0;
+      color: var(--accent);
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .highlight {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      background: linear-gradient(135deg, #e0e7ff, #ede9fe);
+      padding: 3rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-xl);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .highlight::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 200px;
+      background: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 0C44.77 0 0 44.77 0 100C0 155.23 44.77 200 100 200C155.23 200 200 155.23 200 100C200 44.77 155.23 0 100 0ZM100 180C55.82 180 20 144.18 20 100C20 55.82 55.82 20 100 20C144.18 20 180 55.82 180 100C180 144.18 144.18 180 100 180Z' fill='%234f46e5' fill-opacity='0.05'/%3E%3C/svg%3E");
+      background-size: contain;
+      z-index: 0;
+    }
+
+    .highlight .icon {
+      font-size: 3rem;
+      z-index: 1;
+    }
+
+    .highlight > div {
+      z-index: 1;
+    }
+
+    .faq-item {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border-light);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .faq-item:first-child {
+      border-top: 1px solid var(--border-light);
+    }
+
+    .faq-item:hover {
+      background: rgba(255,255,255,0.5);
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-toggle {
+      font-size: 1.25rem;
+      color: var(--accent);
+      transition: var(--transition);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      color: var(--text-muted);
+      padding-right: 1rem;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      margin-top: 1rem;
+    }
+
+    .faq-item.active .faq-toggle {
+      transform: rotate(45deg);
+    }
+
+    .top-bar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--accent-gradient);
+      color: #fff;
+      text-align: center;
+      padding: 0.75rem 0;
+      font-size: 0.875rem;
+      z-index: 1000;
+      transition: var(--transition);
+      box-shadow: 0 2px 10px rgba(79,70,229,0.2);
+    }
+
+    .close-top-bar {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 1.25rem;
+      opacity: 0.8;
+      transition: var(--transition-fast);
+    }
+
+    .close-top-bar:hover {
+      opacity: 1;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 2000;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .modal {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      max-width: 28rem;
+      width: 90%;
+      text-align: center;
+      box-shadow: var(--shadow-xl);
+      transform: translateY(20px) scale(0.95);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .modal-overlay.active .modal {
+      transform: translateY(0) scale(1);
+    }
+
+    /* 优化 1: 弹窗 X 按钮位置调整，避免覆盖文字 */
+    .modal-close {
+      position: absolute;
+      top: 0.5rem; /* 从 1rem 移到 0.5rem */
+      right: 0.5rem; /* 从 1rem 移到 0.5rem */
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-fast);
+      z-index: 10;
+    }
+
+    .modal-close:hover {
+      background: rgba(0,0,0,0.05);
+      color: var(--text-main);
+    }
+
+    .modal-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+      align-items: center;
+    }
+
+    .modal-btn {
+      width: 100%;
+      max-width: 20rem;
+    }
+
+    .modal-remind {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.875rem;
+      text-decoration: underline;
+      transition: var(--transition-fast);
+    }
+
+    .modal-remind:hover {
+      color: var(--accent);
+    }
+
+    footer {
+      padding: 3rem 1.5rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      background: rgba(255,255,255,0.8);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--accent-gradient);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    ul {
+      padding-left: 1.25rem;
+      margin: 1rem 0;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      color: var(--text-muted);
+    }
+
+    /* 优化 2: 响应式调整 */
+    @media (max-width: 768px) {
+      .section {
+        padding: 3rem 0;
+      }
+      
+      /* 针对 Pricing 模块的特殊处理，增加侧边距 */
+      .pricing-section.container {
+        padding: 0 2rem; /* 增加到 2rem 确保文字不顶边 */
+      }
+
+      .hero {
+        padding: 6rem 0 4rem;
+      }
+      
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+      
+      .highlight {
+        flex-direction: column;
+        padding: 2rem;
+        text-align: center;
+      }
+      
+      .timeline {
+        padding-left: 1.5rem;
+      }
+      
+      .step {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .timeline::before {
+        left: 0.75rem;
+      }
+      
+      .dot {
+        width: 2rem;
+        height: 2rem;
+        line-height: 2rem;
+      }
+      
+      .modal {
+        padding: 2.5rem 1.5rem 2rem; /* 增加顶部 Padding 给 X 留出空间 */
+      }
+      
+      .faq-item {
+        padding: 1rem;
+      }
+      
+      .card {
+        padding: 1.5rem; /* 移动端内部也稍微收缩 */
+      }
+    }
+
+    /* Animation classes */
+    .fade-in {
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .slide-up {
+      animation: slideUp 0.6s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar" id="topBar">
+  We take on fewer projects to keep coordination clear.
+  <button class="close-top-bar" id="closeTopBar">×</button>
+</div>
+
+<section class="hero container fade-in">
+  <h1>A calmer way to work<br/>with Chinese creative teams</h1>
+  <p>Goaoxor exists to reduce unnecessary friction.
+We introduce suitable Chinese creative teams, keep communication direct,
+and only step in when involvement is genuinely helpful.</p>
+  <a href="#" class="btn">Describe your situation</a>
+  <div class="tags">
+    <span class="tag">You've used large platforms before</span>
+    <span class="tag">You prefer talking to the actual team</span>
+    <span class="tag">You don't enjoy bidding or ranking systems</span>
+    <span class="tag">You value clarity more than promotion</span>
+  </div>
+</section>
+
+<section class="section container">
+  <div class="section-title slide-up">
+    <h2>This might be for you if…</h2>
+    <p>Goaoxor isn't designed for everyone.
+It works best when expectations are already relatively clear.</p>
+  </div>
+  <div class="tags">
+    <span class="tag">You expect pricing to be discussed openly</span>
+    <span class="tag">You prefer direct communication from the start</span>
+    <span class="tag">You don't want an intermediary controlling delivery</span>
+    <span class="tag">You only need supervision occasionally</span>
+  </div>
+</section>
+
+<section class="section container">
+  <div class="section-title slide-up">
+    <h2>What Goaoxor actually does</h2>
+    <p>Clear boundaries tend to prevent misunderstandings later.</p>
+  </div>
+  <div class="grid grid-2">
+    <div class="card slide-up">
+      <h3><i class="fas fa-check-circle" style="color: var(--accent); margin-right: 0.5rem;"></i> What we do</h3>
+      <ul>
+        <li>Privately review creative teams</li>
+        <li>Match based on scope and working approach</li>
+        <li>Clarify expectations before work begins</li>
+        <li>Offer optional oversight when requested</li>
+        <li>Help resolve issues if communication breaks down</li>
+      </ul>
+    </div>
+    <div class="card slide-up" style="animation-delay: 0.1s;">
+      <h3><i class="fas fa-times-circle" style="color: #ef4444; margin-right: 0.5rem;"></i> What we don't do</h3>
+      <ul>
+        <li>We don't hold or manage project funds</li>
+        <li>We're not an agency or employer</li>
+        <li>We don't impose tools or workflows</li>
+        <li>We don't intervene by default</li>
+        <li>We don't take commission from teams</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section container" style="background: linear-gradient(180deg, rgba(248,250,252,0.5) 0%, rgba(238,242,255,0.5) 100%); border-radius: var(--radius-lg); padding: 2rem;">
+  <div class="section-title slide-up">
+    <h2>How it works</h2>
+    <p>There's no public marketplace or bidding process.</p>
+  </div>
+  <div class="timeline">
+    <div class="step slide-up">
+      <div class="dot">1</div>
+      <div class="card">
+        <h3>Describe your situation</h3>
+        <p>Scope, rough budget, timing -- precision helps, but it's not required.</p>
+      </div>
+    </div>
+    <div class="step slide-up" style="animation-delay: 0.1s;">
+      <div class="dot">2</div>
+      <div class="card">
+        <h3>Teams are reviewed quietly</h3>
+        <p>Past work, pricing logic, and delivery habits are considered.</p>
+      </div>
+    </div>
+    <div class="step slide-up" style="animation-delay: 0.2s;">
+      <div class="dot">3</div>
+      <div class="card">
+        <h3>Introductions are made</h3>
+        <p>The number of teams depends on the option you select.</p>
+      </div>
+    </div>
+    <div class="step slide-up" style="animation-delay: 0.3s;">
+      <div class="dot">4</div>
+      <div class="card">
+        <h3>You work directly</h3>
+        <p>Communication stays open and unfiltered.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section pricing-section container">
+  <div class="section-title slide-up">
+    <h2>Pricing</h2>
+    <p>Fees are fixed and independent of project budgets.</p>
+  </div>
+  
+  <h3 class="slide-up">Plan A -- Introductions only</h3>
+  <div class="grid grid-3">
+    <div class="card slide-up">
+      <span class="pill">Basic</span>
+      <h3>A1 · One Match</h3>
+      <div class="price">$29</div>
+      <p>One carefully reviewed introduction.</p>
+    </div>
+    <div class="card slide-up" style="animation-delay: 0.1s;">
+      <span class="pill" style="background: linear-gradient(135deg, rgba(79,70,229,0.15), rgba(99,102,241,0.15));">Balanced</span>
+      <h3>A2 · Two Matches</h3>
+      <div class="price">$49</div>
+      <p>Two introductions, if comparison is useful.</p>
+    </div>
+    <div class="card slide-up" style="animation-delay: 0.2s;">
+      <span class="pill">Focused</span>
+      <h3>A3 · Three Matches</h3>
+      <div class="price">$79</div>
+      <p>Three introductions for projects with more variables.</p>
+    </div>
+  </div>
+
+  <h3 class="slide-up" style="margin-top: 3.75rem;">Plan B -- With supervision</h3>
+  <div class="grid grid-2">
+    <div class="card slide-up">
+      <h3>Managed Project</h3>
+      <div class="price">$199</div>
+        <li>One team introduction</li>
+        <li>Shared communication space</li>
+        <li>Milestone-based check-ins</li>
+        <li>Delivery oversight</li>
+        <li>Mediation if needed</li>
+    </div>
+    <div class="card slide-up" style="animation-delay: 0.1s;">
+      <h3>Priority Add-on</h3>
+      <div class="price">+$79</div>
+      <p>For situations where response time matters.</p>
+      <ul>
+        <li>24-hour response guarantee</li>
+        <li>Priority team matching</li>
+        <li>Expedited supervision</li>
+        <li>Dedicated support channel</li>
+    </div>
+  </div>
+</section>
+
+<section class="section container">
+  <div class="highlight slide-up">
+    <div class="icon">🛡️</div>
+    <div>
+      <h3>Oversight is not a feature</h3>
+      <p>It's a responsibility -- which is why it's offered as a single, clear option.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section faq-section container">
+  <div class="section-title slide-up">
+    <h2>FAQ</h2>
+    <p>Clarifying these early usually helps.</p>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item slide-up">
+      <div class="faq-question">
+        <h4>Do you take any project funds?</h4>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">No. Payments are handled directly with the team.</div>
+    </div>
+    <div class="faq-item slide-up" style="animation-delay: 0.1s;">
+      <div class="faq-question">
+        <h4>Can I talk to teams directly?</h4>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">Yes. Direct communication is the default.</div>
+    </div>
+    <div class="faq-item slide-up" style="animation-delay: 0.2s;">
+      <div class="faq-question">
+        <h4>What if the collaboration doesn't work?</h4>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">You can stop at any point. There are no lock-ins.</div>
+    </div>
+    <div class="faq-item slide-up" style="animation-delay: 0.3s;">
+      <div class="faq-question">
+        <h4>Can I start with Plan A and upgrade?</h4>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">Yes. Managed supervision can be added later. Many clients start with matching only and add supervision when they see the value in our oversight.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <strong style="font-size: 1.5rem; color: var(--text-main); display: block; margin-bottom: 1rem;">Goaoxor</strong>
+    <p style="margin-bottom: 1.5rem;">Quietly connecting global clients with Chinese creative teams</p>
+    <div class="social-links">
+      <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+    <div class="footer-links">
+      <a href="#">Terms of Service</a>
+      <a href="#">Privacy Policy</a>
+      <a href="mailto:support@goaoxor.com">Contact Us</a>
+    </div>
+    <p style="margin-top: 1.5rem;">© 2025 Goaoxor. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="modal-close" id="modalClose">×</button>
+    <h3>Before you continue</h3>
+    <p>Goaoxor is intentionally small.
+If you're still exploring, you're welcome to look around first.</p>
+    <div class="modal-buttons">
+      <a href="#" class="btn modal-btn">Continue</a>
+      <button class="modal-remind" id="remindLater">I'll come back later</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 顶部公告栏消息轮播数组
+  const messages = [
+    'We take on fewer projects to keep coordination clear.',
+    'Matching is done manually, not automatically.',
+    'Availability varies depending on project scope.'
+  ];
+  let msgIndex = 0;
+  
+  // FAQ toggle
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const toggle = item.querySelector('.faq-toggle');
+    
+    question.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      
+      // Close all other FAQ items
+      document.querySelectorAll('.faq-item').forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+        }
+      });
+      
+      // Toggle current item
+      item.classList.toggle('active');
+      
+      // Update toggle symbol
+      toggle.textContent = item.classList.contains('active') ? '−' : '+';
+    });
+  });
+
+  // Modal functionality
+  const modal = document.getElementById('modalOverlay');
+  const modalClose = document.getElementById('modalClose');
+  const remindLater = document.getElementById('remindLater');
+  
+  // Show modal after delay
+  setTimeout(() => {
+    modal.classList.add('active');
+  }, 1500);
+  
+  // Close modal on X button
+  modalClose.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+  
+  // Close modal on "I'll come back later"
+  remindLater.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+  
+  // Close modal when clicking outside
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+  
+  // Close modal with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      modal.classList.remove('active');
+    }
+  });
+
+  // Top bar functionality
+  const topBar = document.getElementById('topBar');
+  const closeTopBar = document.getElementById('closeTopBar');
+  
+  // Close top bar
+  closeTopBar.addEventListener('click', () => {
+    topBar.style.transform = 'translateY(-100%)';
+    setTimeout(() => {
+      topBar.style.display = 'none';
+    }, 300);
+  });
+  
+  // Rotate top bar messages
+  function rotateMessage() {
+    topBar.style.opacity = 0;
+    setTimeout(() => {
+      // 移除旧的关闭按钮
+      const oldBtn = topBar.querySelector('.close-top-bar');
+      if (oldBtn) oldBtn.remove();
+      
+      // 更新消息文本
+      const textNode = Array.from(topBar.childNodes).find(node => node.nodeType === 3);
+      if (textNode) {
+        textNode.textContent = ' ' + messages[msgIndex];
+      } else {
+        topBar.textContent = messages[msgIndex];
+      }
+      
+      // 重新添加关闭按钮
+      const newCloseBtn = document.createElement('button');
+      newCloseBtn.className = 'close-top-bar';
+      newCloseBtn.textContent = '×';
+      newCloseBtn.id = 'closeTopBar';
+      newCloseBtn.addEventListener('click', () => {
+        topBar.style.transform = 'translateY(-100%)';
+        setTimeout(() => {
+          topBar.style.display = 'none';
+        }, 300);
+      });
+      topBar.appendChild(newCloseBtn);
+      
+      topBar.style.opacity = 1;
+      msgIndex = (msgIndex + 1) % messages.length;
+    }, 300);
+  }
+  
+  setInterval(rotateMessage, 4000);
+  
+  // Add scroll animations
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('slide-up');
+      }
+    });
+  }, observerOptions);
+  
+  // Observe all elements with the slide-up class
+  document.querySelectorAll('.slide-up').forEach(el => {
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
+
+
+
+
